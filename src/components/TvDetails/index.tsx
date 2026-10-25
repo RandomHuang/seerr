@@ -4,6 +4,7 @@ import RTFresh from '@app/assets/rt_fresh.svg';
 import RTRotten from '@app/assets/rt_rotten.svg';
 import Spinner from '@app/assets/spinner.svg';
 import TmdbLogo from '@app/assets/tmdb_logo.svg';
+import BangumiRating from '@app/components/Anime/BangumiRating';
 import BlocklistModal from '@app/components/BlocklistModal';
 import Badge from '@app/components/Common/Badge';
 import Button from '@app/components/Common/Button';
@@ -1166,6 +1167,11 @@ const TvDetails = ({ tv }: TvDetailsProps) => {
                 )}
               </div>
             )}
+            <BangumiRating
+              mediaType="tv"
+              tmdbId={data.id}
+              genres={data.genres}
+            />
             {data.originalName &&
               data.originalLanguage !== locale.slice(0, 2) && (
                 <div className="media-fact">

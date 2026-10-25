@@ -5620,6 +5620,87 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Company'
+  /bangumi/calendar:
+    get:
+      summary: Bangumi airing calendar
+      description: Anime airing this season on Bangumi, grouped by weekday.
+      tags:
+        - bangumi
+      responses:
+        '200':
+          description: Calendar days with their anime
+  /bangumi/season:
+    get:
+      summary: Bangumi current season
+      description: Anime premiering this season on Bangumi, sorted by popularity.
+      tags:
+        - bangumi
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: number
+            example: 1
+            default: 1
+      responses:
+        '200':
+          description: A page of Bangumi subjects
+  /bangumi/ranking:
+    get:
+      summary: Bangumi anime ranking
+      description: All-time Bangumi anime ranking.
+      tags:
+        - bangumi
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: number
+            example: 1
+            default: 1
+      responses:
+        '200':
+          description: A page of Bangumi subjects
+  /bangumi/subject/{subjectId}/match:
+    get:
+      summary: Match a Bangumi subject to TMDB
+      description: Finds the TMDB movie or series for a Bangumi subject so it can be requested.
+      tags:
+        - bangumi
+      parameters:
+        - in: path
+          name: subjectId
+          required: true
+          schema:
+            type: number
+            example: 400602
+      responses:
+        '200':
+          description: Match result; tmdbId is null when nothing matched
+  /bangumi/rating:
+    get:
+      summary: Bangumi rating for a TMDB title
+      description: Looks up the Bangumi subject and rating for a TMDB movie or series.
+      tags:
+        - bangumi
+      parameters:
+        - in: query
+          name: mediaType
+          required: true
+          schema:
+            type: string
+            enum: [movie, tv]
+        - in: query
+          name: tmdbId
+          required: true
+          schema:
+            type: number
+            example: 209867
+      responses:
+        '200':
+          description: Bangumi rating
+        '404':
+          description: Not found on Bangumi
   /discover/movies:
     get:
       summary: Discover movies

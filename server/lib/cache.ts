@@ -8,6 +8,7 @@ export type AvailableCacheIds =
   | 'rt'
   | 'imdb'
   | 'github'
+  | 'bangumi'
   | 'plextv'
   | 'plexwatchlist'
   | 'tvdb';
@@ -37,6 +38,9 @@ const IMDB_MAX_KEYS = 500;
 
 // Releases and commits, varying only by page size and branch.
 const GITHUB_MAX_KEYS = 16;
+
+// Bangumi calendar / search pages plus one TMDB match per subject.
+const BANGUMI_MAX_KEYS = 2000;
 
 // Watchlist item metadata, shared between users as the token is not part of the key.
 const PLEX_TV_MAX_KEYS = 5000;
@@ -238,6 +242,10 @@ class CacheManager {
     github: new Cache('github', 'GitHub API', {
       stdTtl: 21600,
       max: GITHUB_MAX_KEYS,
+    }),
+    bangumi: new Cache('bangumi', 'Bangumi API', {
+      stdTtl: 3600,
+      max: BANGUMI_MAX_KEYS,
     }),
     plextv: new Cache('plextv', 'Plex TV', {
       stdTtl: 86400 * 7, // 1 week cache

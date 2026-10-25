@@ -5,6 +5,7 @@ import RTRotten from '@app/assets/rt_rotten.svg';
 import ImdbLogo from '@app/assets/services/imdb.svg';
 import Spinner from '@app/assets/spinner.svg';
 import TmdbLogo from '@app/assets/tmdb_logo.svg';
+import BangumiRating from '@app/components/Anime/BangumiRating';
 import BlocklistModal from '@app/components/BlocklistModal';
 import Button from '@app/components/Common/Button';
 import CachedImage from '@app/components/Common/CachedImage';
@@ -856,6 +857,11 @@ const MovieDetails = ({ movie }: MovieDetailsProps) => {
                 )}
               </div>
             )}
+            <BangumiRating
+              mediaType="movie"
+              tmdbId={data.id}
+              genres={data.genres}
+            />
             {data.originalTitle &&
               data.originalLanguage !== locale.slice(0, 2) && (
                 <div className="media-fact">
