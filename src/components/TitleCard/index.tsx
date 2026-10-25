@@ -579,6 +579,11 @@ const TitleCard = ({
           </Transition>
         </div>
       </div>
+      {/* Always show title and year under the poster, not only on hover / tap */}
+      <div className="mt-1.5 px-0.5" title={title}>
+        <div className="truncate text-sm font-medium text-white">{title}</div>
+        <div className="h-4 text-xs text-gray-400">{year}</div>
+      </div>
     </div>
   );
 };
